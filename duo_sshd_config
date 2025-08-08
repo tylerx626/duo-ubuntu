@@ -1,0 +1,4 @@
+#@include common-auth
+auth  [success=1 default=ignore] pam_duo.so
+auth  requisite pam_deny.so
+auth  required pam_permit.so
