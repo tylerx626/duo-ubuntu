@@ -70,51 +70,24 @@ echo "prompts = 1" >> /etc/duo/pam_duo.conf
 echo "https_timeout=30" >> /etc/duo/pam_duo.conf
 
 #make copy of sshd_config an replace with Duo config added
-#sudo cp /etc/ssh/sshd_config /etc/ssh/sshd_config.old
-#sudo cp duo-centos/duo_sshd_config /etc/ssh/sshd_config
+sudo cp /etc/ssh/sshd_config /etc/ssh/sshd_config.old
+sudo cp duo-ubuntu/duo_sshd_config /etc/ssh/sshd_config
 
 #make copy of PAM sshd and replace with Duo config added
-#sudo cp /etc/pam.d/sshd /etc/pam.d/sshd.old
-#sudo cp duo-centos/duo_pamd_sshd /etc/pam.d/sshd
+sudo cp /etc/pam.d/sshd /etc/pam.d/sshd.old
+sudo cp duo-ubuntu/duo_pamd_sshd /etc/pam.d/sshd
 
 #make copy of PAM system-auth and replace with Duo config added
 sudo cp /etc/pam.d/common-auth /etc/pam.d/common-auth.old
 sudo cp duo-ubuntu/common-auth /etc/pam.d/common-auth
 
 #SELinux may block PAM from contacting Duo, so adjust to allowing outgoing HTTP connections
-sudo make -C /opt/duo_unix_latest/pam_duo semodule
-sudo make -C /opt/duo_unix_latest/pam_duo semodule-install
+#sudo make -C /opt/duo_unix_latest/pam_duo semodule
+#sudo make -C /opt/duo_unix_latest/pam_duo semodule-install
 
 #verify semodule includes Duo
-semodule -l | grep duo
+#semodule -l | grep duo
 
-
-#Create /etc/yum.repos.d/duosecurity.repo with the following contents:
-
-echo "[duosecurity]" > /etc/yum.repos.d/duosecurity.repo
-echo "name=Duo Security Repository" >> /etc/yum.repos.d/duosecurity.repo
-echo "baseurl=https://pkg.duosecurity.com/CentOS/\$releasever/\$basearch" >> /etc/yum.repos.d/duosecurity.repo
-echo "enabled=1" >> /etc/yum.repos.d/duosecurity.repo
-echo "gpgcheck=1" >> /etc/yum.repos.d/duosecurity.repo
-
-
-#Execute the following shell commands for Centos 6 and later:
-rpm --import https://duo.com/DUO-GPG-PUBLIC-KEY.asc
-yum install -y duo_unix
-
-#cleanup
-sudo rm duo_unix-latest.tar.gz
-sudo rm -r lib
-sudo rm -r libtool
-sudo rm -r duo_unix_support/
-sudo rm -r login_duo/
-sudo rm -r compat/
-sudo rm -r config.*
-sudo rm -r pam_duo/
-sudo rm -r stamp
-sudo rm -r stamp-h1
-sudo rm -r test*
-sudo rm -r Makefile
  
 
 #Now test and make sure auth is working.
