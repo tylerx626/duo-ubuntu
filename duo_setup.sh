@@ -79,7 +79,7 @@ sudo cp duo-ubuntu/duo_pamd_sshd /etc/pam.d/sshd
 
 #make copy of PAM system-auth and replace with Duo config added
 sudo cp /etc/pam.d/common-auth /etc/pam.d/common-auth.old
-sudo cp duo-ubuntu/common-auth /etc/pam.d/common-auth
+sudo cp duo-ubuntu/duo_pamd_common-auth /etc/pam.d/common-auth
 
 #SELinux may block PAM from contacting Duo, so adjust to allowing outgoing HTTP connections
 #sudo make -C /opt/duo_unix_latest/pam_duo semodule
