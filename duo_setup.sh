@@ -24,7 +24,7 @@ then
     echo "Directory /opt/duo_unix_latest exists." 
 else
     echo "Error: Directory /opt/duo_unix_latest/ does not exist."
-    mkdir /opt/duo_unix_latest
+    sudo mkdir /opt/duo_unix_latest
 fi
 
 #extract downloaded tarball and change directory 
