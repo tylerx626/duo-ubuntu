@@ -65,9 +65,12 @@ echo "skey =" $skey >> /etc/duo/pam_duo.conf
 echo "; Duo API host" >> /etc/duo/pam_duo.conf
 echo "host =" $host >> /etc/duo/pam_duo.conf
 echo "failmode = safe" >> /etc/duo/pam_duo.conf
-echo "autopush = yes" >> /etc/duo/pam_duo.conf
-echo "prompts = 1" >> /etc/duo/pam_duo.conf
-echo "https_timeout=30" >> /etc/duo/pam_duo.conf
+echo "autopush = no" >> /etc/duo/pam_duo.conf
+echo "prompts = 2" >> /etc/duo/pam_duo.conf
+echo "https_timeout=60" >> /etc/duo/pam_duo.conf
+echo "pushinfo=yes" >> /etc/duo/pam_duo.conf
+
+
 
 #make copy of sshd_config an replace with Duo config added
 sudo cp /etc/ssh/sshd_config /etc/ssh/sshd_config.old
