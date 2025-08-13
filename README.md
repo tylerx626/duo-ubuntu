@@ -21,13 +21,31 @@ git clone https://github.com/tylerx626/duo-ubuntu
 ```
 chmod +x duo-ubuntu/duo_setup.sh
 ```
-3. Run the script 
+3. Check Ubuntu version and run the following:
+```
+#For 24.04
+echo "deb [trusted=yes arch=amd64] https://pkg.duosecurity.com/Ubuntu noble main" >> /etc/apt/sources.list.d/duosecurity.list
+curl -s https://duo.com/DUO-GPG-PUBLIC-KEY.asc | sudo gpg --dearmor -o  /etc/apt/trusted.gpg.d/duo.gpg
+apt-get update && apt-get install duo-unix
+
+#For 22.04
+echo "deb [trusted=yes arch=amd64] https://pkg.duosecurity.com/Ubuntu jammy main" >> /etc/apt/sources.list.d/duosecurity.list
+curl -s https://duo.com/DUO-GPG-PUBLIC-KEY.asc | sudo gpg --dearmor -o  /etc/apt/trusted.gpg.d/duo.gpg
+apt-get update && apt-get install duo-unix
+
+#For 20.04
+echo "deb [arch=amd64] https://pkg.duosecurity.com/Ubuntu focal main" >> /etc/apt/sources.list.d/duosecurity.list
+curl -s https://duo.com/DUO-GPG-PUBLIC-KEY.asc | sudo apt-key add -
+apt-get update && apt-get install duo-unix
+
+```
+4. Run the script 
 ```
 duo-ubuntu/./duo_setup.sh
 ```
-4. Enter Duo config info when prompted
-5. Fix all the errors and run it again
-6. Repeat until it works ;-P
+5. Enter Duo config info when prompted
+6. Fix all the errors and run it again
+7. Repeat until it works ;-P
 
 
 Future updates wish-list:
