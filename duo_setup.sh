@@ -28,7 +28,7 @@ else
 fi
 
 #extract downloaded tarball and change directory 
-tar zxf duo_unix-latest.tar.gz -C /opt/duo_unix_latest
+sudo tar zxf duo_unix-latest.tar.gz -C /opt/duo_unix_latest
 
 #find the directory path for the latest version after it extracted
 FOUND_PATH=$(find /opt/duo_unix_latest -type d -name "duo_unix-*" 2>/dev/null)
