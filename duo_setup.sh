@@ -4,20 +4,6 @@
 #Official instructions here https://duo.com/docs/duounix#install-pam_duo
 #run all as sudo
 
-#install requirements
-sudo apt-get update
-sudo apt-get install -y build-essential libpam-dev libssl-dev wget
-
-
-#Create /etc/apt/sources.list.d/duosecurity.list with the following contents:
-echo "deb [trusted=yes arch=amd64] https://pkg.duosecurity.com/Ubuntu noble main" >> /etc/apt/sources.list.d/duosecurity.list deb 
-
-#For Ubuntu 22.04 and later
-curl -s https://duo.com/DUO-GPG-PUBLIC-KEY.asc | sudo gpg --dearmor -o  /etc/apt/trusted.gpg.d/duo.gpg
-
-#for Ubuntu 18.04 and 20.04
-sudo apt-get update && apt-get install -y duo-unix
-
 #edit /etc/duo/pam_duo.conf with ikey, secret key, and hostname
 #prompt user for input and add config below...
 
