@@ -38,13 +38,13 @@ cd $FOUND_PATH
 
 #build and install duo_unix with PAM support
 #$FOUND_PATH/configure --with-pam --prefix=/usr && make -C /opt/duo_unix_latest && sudo make -C /opt/duo_unix_latest install
-./configure --with-pam --prefix=/usr && make && sudo make install
+sudo ./configure --with-pam --prefix=/usr && make && sudo make install
 
 #Create /etc/apt/sources.list.d/duosecurity.list with the following contents:
 echo "deb [trusted=yes arch=amd64] https://pkg.duosecurity.com/Ubuntu noble main" >> /etc/apt/sources.list.d/duosecurity.list deb 
 
 curl -s https://duo.com/DUO-GPG-PUBLIC-KEY.asc | sudo gpg --dearmor -o  /etc/apt/trusted.gpg.d/duo.gpg
-apt-get update && apt-get install -y duo-unix
+sudo apt-get update && apt-get install -y duo-unix
 
 #edit /etc/duo/pam_duo.conf with ikey, secret key, and hostname
 #prompt user for input and add config below...
